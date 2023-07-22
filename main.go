@@ -3,13 +3,33 @@ package main
 import (
 	"fmt"
 	"log"
+	"strconv"
 	"strings"
 
+	"github.com/googolgl/go-i2c"
+	"github.com/googolgl/go-pca9685"
 	"go.bug.st/serial"
 )
 
 func main() {
 	fmt.Println("Land Vehicle Test System")
+
+	i2c, err := i2c.New(pca9685.Address, "/dev/i2c-1")
+	if err != nil {
+		log.Fatal(err)
+	}
+	pca0, err0 := pca9685.New(i2c, nil)
+	if err0 != nil {
+		log.Fatal(err0)
+	}
+	pca1, err1 := pca9685.New(i2c, nil)
+	if err1 != nil {
+		log.Fatal(err1)
+	}
+	pca1.SetChannel(1, 0, 130)
+	pca0.SetChannel(0, 0, 130)
+	servo1 := pca1.ServoNew(1, nil)
+	servo0 := pca0.ServoNew(0, nil)
 
 	// Retrieve the port list
 	ports, err := serial.GetPortsList()
@@ -65,6 +85,11 @@ func main() {
 			fmt.Println("Land Vehicle Test System")
 			fmt.Printf("CH1=%s CH2=%s CH3=%s CH4=%s\n", ch1, ch2, ch3, ch4)
 			fmt.Println("======================================")
+			sv, _ := strconv.Atoi(ch1)
+			sv = sv - 1472
+			servo1.Angle(sv)
+
+			servo0.Angle(50)
 
 		}
 	}
