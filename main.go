@@ -86,8 +86,34 @@ func main() {
 			fmt.Printf("CH1=%s CH2=%s CH3=%s CH4=%s\n", ch1, ch2, ch3, ch4)
 			fmt.Println("======================================")
 			sv, _ := strconv.Atoi(ch1)
-			sv = sv - 1472
-			servo1.Angle(sv)
+			svx := sv / 23
+			sv1 := 1 + svx
+			sv2 := sv1
+			if sv1 > 65 {
+				if sv1 > 70 {
+					sv2 = sv2 + 5
+					if sv1 > 75 {
+						sv2 = sv2 + 5
+						if sv1 > 85 {
+							sv2 = sv2 + 5
+						}
+					}
+				}
+			} else {
+				if sv1 < 60 {
+					sv2 = sv2 - 5
+					if sv1 < 55 {
+						sv2 = sv2 - 5
+						if sv1 < 45 {
+							sv2 = sv2 - 5
+						}
+					}
+				}
+
+			}
+
+			fmt.Printf("Servo Position: %d   %d   %d \n", svx, sv1, sv2)
+			servo1.Angle(sv2)
 
 			servo0.Angle(50)
 
