@@ -1,6 +1,7 @@
 # LVTS
 Land Vehicle Test System
 
+https://www.allaboutcircuits.com/projects/control-a-motor-with-an-arduino/
 
 https://www.partsnotincluded.com/how-to-use-an-rc-controller-with-an-arduino/
 
