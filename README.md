@@ -1,5 +1,7 @@
-# LVTS
-Land Vehicle Test System
+# Pi-Serial-Servo-Control
+Pi-Serial-Servo-Control
+
+This project uses https://github.com/Com1Software/Arduino-RC-Controller for Serial input.
 
 https://www.allaboutcircuits.com/projects/control-a-motor-with-an-arduino/
 
